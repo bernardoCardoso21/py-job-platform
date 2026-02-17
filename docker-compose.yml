@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=app
+      - POSTGRES_DB=backend
     ports:
       - "5432:5432"
 
@@ -29,7 +29,7 @@ services:
     depends_on:
       - db
       - redis
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 
   worker:
     build: .
@@ -42,8 +42,8 @@ services:
     depends_on:
       - db
       - redis
-    # Placeholder command for worker, will be updated in next checkpoints
-    command: python -c "import time; print('Worker placeholder starting...'); time.sleep(3600)"
+    # Worker command using arq
+    command: arq worker.main.WorkerSettings
 
 volumes:
   postgres_data:

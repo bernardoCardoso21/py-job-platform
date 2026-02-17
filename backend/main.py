@@ -1,10 +1,13 @@
 from fastapi import FastAPI, Depends
-from app.api.deps import verify_api_key
-from app.logger import setup_logging, logger
+from backend.api.deps import verify_api_key
+from backend.api.jobs import router as jobs_router
+from backend.logger import setup_logging, logger
 
 setup_logging()
 
 app = FastAPI(title="Async Job Platform")
+
+app.include_router(jobs_router)
 
 @app.get("/health", dependencies=[Depends(verify_api_key)])
 async def health_check():

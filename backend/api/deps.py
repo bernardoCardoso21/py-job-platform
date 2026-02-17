@@ -1,6 +1,6 @@
 from fastapi import Security, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from app.core_config import settings
+from backend.core_config import settings
 
 security = HTTPBearer()
 

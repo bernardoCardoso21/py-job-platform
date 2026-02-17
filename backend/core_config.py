@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     POSTGRES_SERVER: str = "db"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
-    POSTGRES_DB: str = "app"
+    POSTGRES_DB: str = "backend"
     
     @property
     def sqlalchemy_database_uri(self) -> str:
