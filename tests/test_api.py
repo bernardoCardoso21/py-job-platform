@@ -1,5 +1,4 @@
 import pytest
-from backend.core_config import settings
 
 @pytest.mark.asyncio
 async def test_health_unauthorized(client):

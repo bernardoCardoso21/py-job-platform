@@ -1,8 +1,7 @@
-import asyncio
 import csv
 import os
 from datetime import datetime, timezone, timedelta
-from sqlalchemy import delete, select
+from sqlalchemy import select
 from backend.core_config import settings
 from backend.db.session import SessionLocal
 from backend.db.models import Job, JobStatus

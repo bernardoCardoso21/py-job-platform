@@ -5,6 +5,8 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+from backend.db.session import Base
+from backend.db.models import Job  # noqa: F401
 from alembic import context
 
 # this is the Alembic Config object, which provides
@@ -18,8 +20,6 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from backend.db.session import Base
-from backend.db.models import Job # Import models to ensure they are registered
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
