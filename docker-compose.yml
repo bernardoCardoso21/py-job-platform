@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=app
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    volumes:
+      - .:/app
+      - shared_files:/data/files
+    environment:
+      - POSTGRES_SERVER=db
+      - REDIS_HOST=redis
+      - API_KEY=supersecretkey
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  worker:
+    build: .
+    volumes:
+      - .:/app
+      - shared_files:/data/files
+    environment:
+      - POSTGRES_SERVER=db
+      - REDIS_HOST=redis
+    depends_on:
+      - db
+      - redis
+    # Placeholder command for worker, will be updated in next checkpoints
+    command: python -c "import time; print('Worker placeholder starting...'); time.sleep(3600)"
+
+volumes:
+  postgres_data:
+  shared_files:
