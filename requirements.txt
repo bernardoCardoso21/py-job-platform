@@ -8,6 +8,3 @@ redis
 arq
 python-multipart
 structlog
-pytest
-httpx
-pytest-asyncio
