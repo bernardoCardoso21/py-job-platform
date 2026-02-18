@@ -63,5 +63,6 @@ jobs:
           DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5432/backend
           REDIS_HOST: localhost
           API_KEY: supersecretkey
+          FILES_DIR: ${{ github.workspace }}/data/files
           PYTHONPATH: ${{ github.workspace }}
         run: pytest -o "asyncio_mode=auto" tests/

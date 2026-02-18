@@ -24,6 +24,6 @@ class Settings(BaseSettings):
     REDIS_PORT: int = 6379
 
     # Files
-    FILES_DIR: str = "/data/files"
+    FILES_DIR: str = "data/files"
 
 settings = Settings()

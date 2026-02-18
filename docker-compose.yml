@@ -24,6 +24,7 @@ services:
       - POSTGRES_SERVER=db
       - REDIS_HOST=redis
       - API_KEY=supersecretkey
+      - FILES_DIR=/data/files
     ports:
       - "8000:8000"
     depends_on:
@@ -39,6 +40,7 @@ services:
     environment:
       - POSTGRES_SERVER=db
       - REDIS_HOST=redis
+      - FILES_DIR=/data/files
     depends_on:
       - db
       - redis
