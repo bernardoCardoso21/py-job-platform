@@ -3,7 +3,7 @@ import pytest
 @pytest.mark.asyncio
 async def test_health_unauthorized(client):
     response = await client.get("/health")
-    assert response.status_code == 403
+    assert response.status_code == 401
 
 @pytest.mark.asyncio
 async def test_health_authorized(client, auth_headers):
@@ -14,7 +14,7 @@ async def test_health_authorized(client, auth_headers):
 @pytest.mark.asyncio
 async def test_create_job_no_auth(client):
     response = await client.post("/jobs/", json={"template_name": "report_v1"})
-    assert response.status_code == 403
+    assert response.status_code == 401
 
 @pytest.mark.asyncio
 async def test_create_job_invalid_template(client, auth_headers):

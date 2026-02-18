@@ -46,4 +46,4 @@ class JobsService:
         redis = await create_pool(RedisSettings(host=settings.REDIS_HOST, port=settings.REDIS_PORT))
         # _defer_until expects a datetime object (naive or aware)
         await redis.enqueue_job('process_job', job_id, _defer_until=run_at)
-        await redis.close()
+        await redis.aclose()
