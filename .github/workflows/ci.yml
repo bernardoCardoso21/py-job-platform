@@ -60,7 +60,7 @@ jobs:
           pip install pytest pytest-asyncio httpx
       - name: Run tests
         env:
-          DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5432/backend
+          POSTGRES_SERVER: localhost
           REDIS_HOST: localhost
           API_KEY: supersecretkey
           FILES_DIR: ${{ github.workspace }}/data/files
